@@ -22,3 +22,15 @@ after_success:
   - docker push paulpatena/multi-nginx
   - docker push paulpatena/multi-server
   - docker push paulpatena/multi-worker
+
+deploy"
+  provider: elasticbeanstalk
+  region: 'ap-southeast-2'
+  app: 'multi-docker-syd'
+  env: 'Multidockersyd-env'
+  bucketname: 'elasticbeanstalk-ap-southeast-2-772544791412'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
